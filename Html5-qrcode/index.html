@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>掃描條碼</title>
+	</head>
+	<style>
+		#box {
+			text-align: center;
+			margin-top: 30px;
+		}
+	</style>
+	<body>
+		<div id="reader"></div>
+		<div id="box">
+			<button id="scanBtn">點我掃描</button>
+		</div>
+		<p>掃描結果</p>
+		<p id="text"></p>
+
+		<script src="https://cdn.jsdelivr.net/gh/mebjas/html5-qrcode/dist/html5-qrcode.min.js"></script>
+		<script>
+			const html5QrCode = new Html5Qrcode('reader');
+			const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+				document.querySelector('#text').innerHTML = `BarCode值${decodedText}`;
+				html5QrCode
+					.stop()
+					.then(() => {
+						html5QrCode.clear();
+					})
+					.catch((error) => {
+						console.log('err', error.message);
+					});
+			};
+			const config = { fps: 10, qrbox: { width: 350, height: 250 } };
+			document.querySelector('#scanBtn').addEventListener('click', () => {
+				document.querySelector('#reader').display = 'block';
+				html5QrCode.start({ facingMode: 'environment' }, config, qrCodeSuccessCallback).catch((error) => {
+					console.log('err', error.message);
+					alert('請開啟相機權限');
+					html5QrCode.stop().then(() => {
+						html5QrCode.clear();
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

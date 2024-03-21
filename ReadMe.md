@@ -20,4 +20,4 @@
 可以把網頁裝進應用程式中
 也可以搭配框架
 [Electron 官方文件](https://www.electronjs.org/)
-[Electron 教學影片](https://www.youtube.com/watch?v=tqBi_Tou6wQ&list=PLC3y8-rFHvwiCJD3WrAFUrIMkGVDE0uqW)
+[Electron 教學影片](https://www.youtube.com/watch?v=tqBi_To==u6wQ&list=PLC3y8-rFHvwiCJD3WrAFUrIMkGVDE0uqW)
